@@ -1,14 +1,17 @@
-## pdrsor 🔮
+## Pdrsor 🔮
 
-pdrsor, doğal dildeki isteklerinizi yerel bir yapay zeka (Ollama) kullanarak Bash komutlarına dönüştüren, Go ile yazılmış minimalist bir terminal asistanıdır. Verileriniz bilgisayarınızdan çıkmaz, gizlilik önceliklidir.
+Pdrsor, doğal dildeki isteklerinizi yerel bir yapay zeka (Ollama) kullanarak Bash komutlarına dönüştüren, Go ile yazılmış minimalist bir terminal asistanıdır. Verileriniz bilgisayarınızdan çıkmaz, gizlilik önceliklidir.
 Özellikler
 
-  %100 Yerel: Ollama API'sini kullanarak tüm işlemleri kendi makinenizde yapar.
++ %100 Yerel: Ollama API'sini kullanarak tüm işlemleri kendi makinenizde yapar.
 
-  Otomatik Kopyalama: Üretilen komutları anında panoya (clipboard) kopyalar (xclip veya wl-copy desteği).  
-    Hızlı Yapılandırma: İlk çalıştırmada modelinizi seçer, sonrasında ayarları hatırlar.  
-    Görsel Arayüz: Terminal ruhuna uygun renkli ve tablolu çıktı düzeni.  
-    Hafif: Go ile derlenmiş, bağımlılıksız tek bir binary.  
++ Otomatik Kopyalama: Üretilen komutları anında panoya (clipboard) kopyalar (xclip veya wl-copy desteği).  
+ 
++ Hızlı Yapılandırma: İlk çalıştırmada modelinizi seçer, sonrasında ayarları hatırlar.  
+
++ Görsel Arayüz: Terminal ruhuna uygun renkli ve tablolu çıktı düzeni.  
+    
++ Hafif: Go ile derlenmiş, bağımlılıksız tek bir binary.  
     
 ### Gereksinimler
     Ollama (Arka planda çalışıyor olmalı)  
@@ -17,7 +20,7 @@ pdrsor, doğal dildeki isteklerinizi yerel bir yapay zeka (Ollama) kullanarak Ba
 
 ### Kurulum
 
-Projeyi klonlayıp Makefile üzerinden hızlıca kurabilirsiniz:
+Projeyi klonlayıp kurabilirsiniz:
 Bash
 ```
 git clone https://github.com/kullaniciadin/pdrsor.git
