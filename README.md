@@ -54,3 +54,8 @@ Araç, ayarlarını **~/.config/pdrsor_rc** dosyasında tutar. Kullanılan model
 Neden pdrsor?
 
 Bulut tabanlı AI asistanlarının aksine pdrsor, terminal geçmişinizi veya sistem yapınızı dış sunuculara göndermez. Sadece ihtiyacınız olan komutu üretir, panonuza kopyalar ve aradan çekilir.
+
+### Önerilen LLM modelleri
+
++ İngilizce kullanım için  gemma3:270m, **qwen3.5:0.8b**, **gemma4:e2b** ve üstü modeller.
++ Türkçe Kullanım için **gemma4:e2b** ve üstü modeller.
