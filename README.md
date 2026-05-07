@@ -57,5 +57,8 @@ Bulut tabanlı AI asistanlarının aksine pdrsor, terminal geçmişinizi veya si
 
 ### Önerilen LLM modelleri
 
-+ İngilizce kullanım için  gemma3:270m, **qwen3.5:0.8b**, **gemma4:e2b** ve üstü modeller.
-+ Türkçe Kullanım için **gemma4:e2b** ve üstü modeller.
+Gemma4:e2b modelini bir çok farklı açıdan test ettim, türkçe anlama noktasında en başarılı modellerden biri, ancak 7gb'lık halinden bahsettiğim unutulmamalı.  
+Bir çok 1b'lik sıkıştırılmış modeli de test ettim basit komutlar anlamında gemma3:1b başarılı olsa da detaylı emirlerde duraksadığı görülmüştür. 
+
+
+
