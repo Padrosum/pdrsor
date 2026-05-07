@@ -22,8 +22,8 @@ Bash
 ```
 git clone https://github.com/kullaniciadin/pdrsor.git
 cd pdrsor
-make
-sudo make install
+go build -o pdrsor main.go
+
 ```
 ### Kullanım
 
