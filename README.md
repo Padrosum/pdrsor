@@ -23,7 +23,7 @@ Bash
 git clone https://github.com/kullaniciadin/pdrsor.git
 cd pdrsor
 go build -o pdrsor main.go
-
+sudo mv pdrsor /usr/local/bin/
 ```
 ### Kullanım
 
