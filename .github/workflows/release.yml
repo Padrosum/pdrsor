@@ -1,0 +1,50 @@
+name: Otomatik Sürüm Yayınla (Linux)
+
+# Bu iş akışı sadece "v" ile başlayan bir etiket (tag) gönderdiğinizde çalışır
+# Örnek: v1.0.0, v2.1.3
+on:
+  push:
+    tags:
+      - 'v*.*.*' 
+
+# GitHub botunun "Releases" sekmesine dosya oluşturup yazabilmesi için gereken izin
+permissions:
+  contents: write 
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Adım: Proje kodlarını GitHub sunucusuna indirir
+      - name: Kodları Çek
+        uses: actions/checkout@v4
+
+      # 2. Adım: Go ortamını hazırlar
+      - name: Go Ortamını Kur
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21' # Projenizdeki Go sürümüne göre değiştirebilirsiniz
+
+      # 3. Adım: Sadece Linux (64-bit) için derleme yapar
+      - name: Projeyi Derle (Linux)
+        run: |
+          echo "Linux için derleniyor..."
+          GOOS=linux GOARCH=amd64 go build -o pdrsor main.go
+
+      # 4. Adım: softprops/action-gh-release ile dosyayı yayınlar
+      - name: GitHub Release Oluştur ve Dosyayı Yükle
+        uses: softprops/action-gh-release@v2
+        with:
+          # Yayınlanacak dosyanın adı (Derleme adımındaki -o parametresiyle aynı olmalı)
+          files: pdrsor 
+          
+          # Sürüm başlığı otomatik olarak etiket adını alır (Örn: Sürüm v1.0.0)
+          name: Sürüm ${{ github.ref_name }} 
+          
+          # Değişiklik listesini (Commit mesajlarını) otomatik olarak sürüm notuna ekler
+          generate_release_notes: true 
+          
+          # Yayın doğrudan herkese açık ve final sürüm olarak yapılır
+          draft: false
+          prerelease: false
