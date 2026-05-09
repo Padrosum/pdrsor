@@ -3,7 +3,7 @@ import sys
 import requests
 
 OLLAMA_HOST = "http://localhost:11434"
-MODEL = "gemma4:e2b"
+MODEL = "LOCA-LMM"
 
 
 def query_ollama(prompt):
