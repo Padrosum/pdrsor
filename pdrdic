@@ -1,0 +1,70 @@
+#!/usr/bin/env python3
+import sys
+import requests
+
+OLLAMA_HOST = "http://localhost:11434"
+MODEL = "gemma4:e2b"
+
+
+def query_ollama(prompt):
+    data = {"model": MODEL, "prompt": prompt, "stream": False}
+    try:
+        response = requests.post(f"{OLLAMA_HOST}/api/generate", json=data, timeout=60)
+        response.raise_for_status()
+        result = response.json()
+        return result.get("response", "").strip()
+    except Exception as e:
+        return f"Error contacting Ollama: {e}"
+
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: program-x <word>")
+        sys.exit(1)
+    word = sys.argv[1]
+    prompt = f"""Give the meaning, etymology, usage examples, and French, Italian, Spanish equivalents for the word '{word}'.
+Return only these sections, labeled exactly as:
+Meaning: <meaning>
+Etymology: <etymology>
+Usage: <usage examples>
+French: <french equivalent>
+Italian: <italian equivalent>
+Spanish: <spanish equivalent>
+Do not add any extra commentary or explanation."""
+    raw = query_ollama(prompt)
+    # Parse lines
+    meaning = etymology = usage = french = italian = spanish = ""
+    for line in raw.splitlines():
+        if line.startswith("Meaning:"):
+            meaning = line[len("Meaning:") :].strip()
+        elif line.startswith("Etymology:"):
+            etymology = line[len("Etymology:") :].strip()
+        elif line.startswith("Usage:"):
+            usage = line[len("Usage:") :].strip()
+        elif line.startswith("French:"):
+            french = line[len("French:") :].strip()
+        elif line.startswith("Italian:"):
+            italian = line[len("Italian:") :].strip()
+        elif line.startswith("Spanish:"):
+            spanish = line[len("Spanish:") :].strip()
+    # Output
+    if meaning:
+        print(f"=== Meaning ===\n{meaning}\n")
+    if etymology:
+        print(f"=== Etymology ===\n{etymology}\n")
+    if usage:
+        print(f"=== Usage ===\n{usage}\n")
+    # Combine equivalents
+    equiv_parts = []
+    if french:
+        equiv_parts.append(f"French: {french}")
+    if italian:
+        equiv_parts.append(f"Italian: {italian}")
+    if spanish:
+        equiv_parts.append(f"Spanish: {spanish}")
+    if equiv_parts:
+        print("=== Equivalents ===\n" + "\n".join(equiv_parts) + "\n")
+
+
+if __name__ == "__main__":
+    main()
